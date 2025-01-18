@@ -2,8 +2,25 @@ services:
   db:
     image: 'postgres:17.2'
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - POSTGRES_DB=lovify
+      - POSTGRES_PASSWORD=db-password
+      - POSTGRES_USER=db-user
     ports:
-      - '5432'
+      - '5433:5432'
+    networks:
+      - db
+
+  s3:
+    image: 'bitnami/minio:2024.12.18'
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
+    networks:
+      - s3
+
+networks:
+  db:
+  s3:
