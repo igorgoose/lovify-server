@@ -3,8 +3,8 @@ services:
     image: 'postgres:17.2'
     environment:
       - POSTGRES_DB=lovify
-      - POSTGRES_PASSWORD=db-password
-      - POSTGRES_USER=db-user
+      - POSTGRES_PASSWORD=db_password
+      - POSTGRES_USER=db_user
     ports:
       - '5433:5432'
     networks:
@@ -16,8 +16,8 @@ services:
       - '9000:9000'
       - '9001:9001'
     environment:
-      - MINIO_ROOT_USER=minio-root-user
-      - MINIO_ROOT_PASSWORD=minio-root-password
+      - MINIO_ROOT_USER=minio_root_user
+      - MINIO_ROOT_PASSWORD=minio_root_password
     networks:
       - s3
 

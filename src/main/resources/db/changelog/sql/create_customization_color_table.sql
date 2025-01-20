@@ -1,4 +1,4 @@
-create table color
+create table customization_color
 (
     id                 uuid,
     customization_type varchar(8) not null,

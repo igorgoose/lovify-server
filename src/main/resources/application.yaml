@@ -1,1 +1,15 @@
-spring.application.name: lovify-server
+spring:
+  application.name: lovify-server
+
+  datasource:
+    username: ${LOVIFY_DB_USER:db_user}
+    password: ${LOVIFY_DB_PASSWORD:db_password}
+    url: ${LOVIFY_DB_URL:jdbc:postgresql://localhost:5433/lovify}
+
+
+  liquibase:
+    change-log: classpath:db/changelog/lovify-master-changelog.xml
+    url: ${LIQUIBASE_LOVIFY_URL:jdbc:postgresql://localhost:5433/lovify}
+    user: ${LIQUIBASE_LOVIFY_USER:db_user}
+    password: ${LIQUIBASE_LOVIFY_PASSWORD:db_password}
+
