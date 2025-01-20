@@ -16,3 +16,17 @@ spring:
   jpa:
     open-in-view: false
 
+
+features:
+  constructor:
+    preview:
+      height: 800
+      width: 400
+      background-id: background
+      svg-loader:
+        local-file-system:
+          base-path: ${SVG_LOADER_LFS_BASE_PATH}
+
+logging:
+  level:
+    by.lovify: debug
