@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800">
+
+    <g id="back-hair-group"/>
+    <g id="body-group"/>
+    <g id="face-group"/>
+    <g id="front-hair-group"/>
+    <g id="right-leg-group"/>
+    <g id="left-leg-group"/>
+    <g id="right-arm-group"/>
+    <g id="left-arm-group"/>
+
+    <circle id="connect-body-anchor" cx="200" cy="400" r="3.6" fill="red" opacity="0.5"/>
+
+</svg>
