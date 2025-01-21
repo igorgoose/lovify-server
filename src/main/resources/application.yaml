@@ -13,3 +13,6 @@ spring:
     user: ${LIQUIBASE_LOVIFY_USER:db_user}
     password: ${LIQUIBASE_LOVIFY_PASSWORD:db_password}
 
+  jpa:
+    open-in-view: false
+

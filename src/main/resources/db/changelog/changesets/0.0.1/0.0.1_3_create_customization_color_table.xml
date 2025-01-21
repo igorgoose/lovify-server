@@ -10,10 +10,10 @@
             </not>
         </preConditions>
 
-        <sqlFile path="../sql/create_customization_color_table.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="sql/create_customization_color_table.sql" relativeToChangelogFile="true"/>
 
         <rollback>
-            <sqlFile path="../sql/create_customization_color_table_rollback.sql" relativeToChangelogFile="true"/>
+            <sqlFile path="sql/create_customization_color_table_rollback.sql" relativeToChangelogFile="true"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>
