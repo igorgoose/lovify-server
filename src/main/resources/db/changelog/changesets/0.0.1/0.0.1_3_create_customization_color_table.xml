@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="0.0.1_3_create_customization_color_table" author="igorgoose">
+        <preConditions onFail="MARK_RAN" onError="WARN">
+            <not>
+                <tableExists tableName="customization_color"/>
+            </not>
+        </preConditions>
+
+        <sqlFile path="sql/create_customization_color_table.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/create_customization_color_table_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
