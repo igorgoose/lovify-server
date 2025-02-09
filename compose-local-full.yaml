@@ -1,0 +1,35 @@
+services:
+  db:
+    image: 'postgres:17.2'
+    env_file:
+      - .env.local
+    ports:
+      - '5433:5432'
+    networks:
+      - db
+
+  s3:
+    image: 'bitnami/minio:2024.12.18'
+    env_file:
+      - .env.local
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - s3
+
+  lovify-server:
+    build:
+      context: .
+    env_file:
+      - .env.local
+    ports:
+      - '8080:8080'
+    networks:
+      - s3
+      - db
+
+
+networks:
+  db:
+  s3:

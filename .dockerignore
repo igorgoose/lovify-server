@@ -1,0 +1,12 @@
+.gradle/
+.idea/
+
+.gitignore
+.gitattributes
+*.md
+
+# todo uncomment after we move images to s3
+#src/test/
+build/
+logs/
+local/
