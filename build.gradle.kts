@@ -6,8 +6,6 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
 }
 
-val batikVersion: String by project
-
 group = "by.lovify"
 version = "0.0.1-SNAPSHOT"
 
@@ -25,7 +23,6 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven("https://repository.groupdocs.com/repo/")
 }
 
 dependencies {
@@ -33,7 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.liquibase:liquibase-core")
     implementation("xml-apis:xml-apis-ext:1.3.04")
-    implementation("org.apache.xmlgraphics:batik-all:$batikVersion") {
+    implementation(libs.batik.all) {
         exclude("commons-logging", "commons-logging")
     }
     implementation("com.twelvemonkeys.imageio:imageio-webp:3.12.0")
