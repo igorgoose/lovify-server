@@ -1,4 +1,4 @@
-FROM eclipse-temurin:23-jdk-noble as build
+FROM eclipse-temurin:23-jdk-noble AS build
 
 ENV SRC_HOME=/home/build
 WORKDIR $SRC_HOME
