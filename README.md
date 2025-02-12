@@ -23,9 +23,11 @@
 - `bodyType.id`: body-straight, body-buxom
 - `faceType.id`: face-oval, face-soft
 - `nose.id`: nose-12
-- `mouth.id`: mouth-1, mouth-2
+- `mouth.id`: mouth-1, mouth-2, mouth-expression-smile
+- `mustache.id`: mustache-1, mustache-2
 - `topClothing.id`: clothing-top-shirt129-body-buxom, clothing-top-shirt116-body-buxom, clothing-top-shirt0-body-straight,
 clothing-top-shirt130-body-straight
-- `rightLeg.id`,`leftLeg.id`: leg-2, leg-7
+- `bottomClothing.id`: clothing-bottom-shorts10-body-buxom, clothing-bottom-casualpants14-body-straight
+- `rightLeg.id`,`leftLeg.id`: leg-2, leg-7 
 
 Перечисленные поля обязательны к заполнению. Остальные поля не учитываются.

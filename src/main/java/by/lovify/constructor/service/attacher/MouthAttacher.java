@@ -3,6 +3,7 @@ package by.lovify.constructor.service.attacher;
 import by.lovify.constructor.constant.CharacterBuilderConstants;
 import by.lovify.constructor.model.constructor.part.Face;
 import by.lovify.constructor.model.constructor.part.Mouth;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.service.builder.CharacterPartBuilder;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,10 @@ class MouthAttacher extends CharacterPartAttacher<Mouth, Face> {
     public MouthAttacher(
         CharacterPartBuilder<Mouth> sourcePartBuilder,
         List<CharacterPartAttacher<?, Mouth>> attachers,
-        CharacterPartPositioner characterPartPositioner
+        CharacterPartPositioner characterPartPositioner,
+        ConnectorResolver connectorResolver
     ) {
-        super(sourcePartBuilder, attachers, characterPartPositioner);
+        super(sourcePartBuilder, attachers, characterPartPositioner, connectorResolver);
     }
 
     @Override

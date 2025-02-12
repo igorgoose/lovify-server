@@ -1,18 +1,13 @@
 package by.lovify.constructor.service.attacher;
 
-import static by.lovify.constructor.constant.CharacterBuilderConstants.EPSILON;
-import static by.lovify.constructor.util.CharacterBuilderUtils.calculateNewAffineTransform;
-import static by.lovify.constructor.util.CharacterBuilderUtils.calculateOriginalSize;
-import static by.lovify.constructor.util.CharacterBuilderUtils.findGroupById;
-import static java.lang.Math.abs;
-
-import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
-import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner.Context;
 import by.lovify.constructor.model.constructor.Anchor;
 import by.lovify.constructor.model.constructor.AttachedPart;
+import by.lovify.constructor.model.constructor.CharacterBuilderContext;
 import by.lovify.constructor.model.constructor.OpenSvgTransform;
 import by.lovify.constructor.model.constructor.part.CharacterPart;
-import by.lovify.constructor.model.constructor.CharacterBuilderContext;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
+import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
+import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner.Context;
 import by.lovify.constructor.service.builder.CharacterPartBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static by.lovify.constructor.constant.CharacterBuilderConstants.EPSILON;
+import static by.lovify.constructor.util.CharacterBuilderUtils.*;
+import static java.lang.Math.abs;
+
 /**
  * Attaches source part to destination part. Source part's coordinates are calculated by aligning source part's
  * connector with destination part's anchor.
@@ -40,18 +39,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends CharacterPart> {
 
-    private final CharacterPartBuilder<P> partBuilder;
-    private final List<CharacterPartAttacher<?, P>> attachers;
-    private final CharacterPartPositioner characterPartPositioner;
-
-    protected static SVGOMCircleElement validatePositionMarker(Element marker) {
-        if (marker instanceof SVGOMCircleElement circleElement) {
-            return circleElement;
-        }
-        throw new IllegalArgumentException(
-            "Element %s is not SVGOMCircleElement, hence not a valid position marker".formatted(marker)
-        );
-    }
+    protected final CharacterPartBuilder<P> partBuilder;
+    protected final List<CharacterPartAttacher<?, P>> attachers;
+    protected final CharacterPartPositioner characterPartPositioner;
+    protected final ConnectorResolver connectorResolver;
 
     /**
      * @param destinationPart part to attach source part to
@@ -70,7 +61,7 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
         );
 
         P part = partBuilder.build(context);
-        AttachedPart<P> attachedPart = doAttach(part, destinationPart, anchor);
+        AttachedPart<P> attachedPart = doAttach(part, destinationPart, anchor, context);
         context.registerAttachers(attachedPart, attachers);
         context.onPartAttached(attachedPart);
     }
@@ -81,7 +72,12 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
 
     protected abstract String getDestinationGroupId();
 
-    private AttachedPart<P> doAttach(P part, AttachedPart<DP> destinationPart, Anchor anchor) {
+    protected AttachedPart<P> doAttach(
+        P part,
+        AttachedPart<DP> destinationPart,
+        Anchor anchor,
+        CharacterBuilderContext context
+    ) {
         SVGSVGElement sourceSvg = part.svg();
         SVGSVGElement destinationSvg = destinationPart.part().svg();
         Document destinationDocument = destinationSvg.getOwnerDocument();
@@ -92,7 +88,9 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
         SVGOMGElement destinationGroup = findOrCreateDestinationGroup(destinationSvg, destinationGroupId, anchor);
         destinationGroup.appendChild(importedSvg);
 
-        List<OpenSvgTransform> transforms = calculateTransforms(part, destinationPart.transform(), anchor);
+        Element connector = connectorResolver.resolveConnector(part, getConnectorId(), context)
+            .orElseThrow(() -> new IllegalStateException("Failed to resolve connector for part " + part));
+        List<OpenSvgTransform> transforms = calculateTransforms(part, connector, destinationPart.transform(), anchor);
         transforms.forEach(it -> destinationGroup.getTransform().getBaseVal().appendItem(it));
 
         AffineTransform newAffineTransform = calculateNewAffineTransform(destinationPart.transform(), transforms);
@@ -119,11 +117,10 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
 
     protected List<OpenSvgTransform> calculateTransforms(
         P part,
+        Element connectorElement,
         AffineTransform parentTransform,
         Anchor targetMarker
     ) {
-        String connectorId = getConnectorId();
-        Element connectorElement = part.svg().getElementById(connectorId);
         SVGOMCircleElement sourceMarker = validatePositionMarker(connectorElement);
 
         float targetSize = targetMarker.size();
@@ -169,5 +166,14 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
         }
 
         return transforms;
+    }
+
+    protected static SVGOMCircleElement validatePositionMarker(Element marker) {
+        if (marker instanceof SVGOMCircleElement circleElement) {
+            return circleElement;
+        }
+        throw new IllegalArgumentException(
+            "Element %s is not SVGOMCircleElement, hence not a valid position marker".formatted(marker)
+        );
     }
 }

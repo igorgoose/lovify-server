@@ -1,6 +1,7 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.model.constructor.part.BackHair;
 import by.lovify.constructor.model.constructor.part.Background;
@@ -16,9 +17,10 @@ class BackHairAttacher extends CharacterPartAttacher<BackHair, Background> {
     public BackHairAttacher(
         CharacterPartBuilder<BackHair> sourcePartBuilder,
         List<CharacterPartAttacher<?, BackHair>> attachers,
-        @Qualifier("atBottomLayerPositioner") CharacterPartPositioner characterPartPositioner
+        @Qualifier("atBottomLayerPositioner") CharacterPartPositioner characterPartPositioner,
+        ConnectorResolver connectorResolver
     ) {
-        super(sourcePartBuilder, attachers, characterPartPositioner);
+        super(sourcePartBuilder, attachers, characterPartPositioner, connectorResolver);
     }
 
     @Override
