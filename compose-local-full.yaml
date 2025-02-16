@@ -19,8 +19,8 @@ services:
       - s3
 
   lovify-server:
-    build:
-      context: .
+    image: 'ghcr.io/igorgoose/lovify-server:master'
+    platform: linux/x86_64
     env_file:
       - .env.local
     ports:
