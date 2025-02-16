@@ -27,6 +27,6 @@
 - `mouth.id`: mouth-1, mouth-2
 - `topClothing.id`: clothing-top-shirt129-body-buxom, clothing-top-shirt116-body-buxom, clothing-top-shirt0-body-straight,
 clothing-top-shirt130-body-straight
-- `rightLeg.id`,`leftLeg.id`: leg-2, leg-7 
+- `rightLeg.id`,`leftLeg.id`: leg-2, leg-7
 
 Перечисленные поля обязательны к заполнению. Остальные поля не учитываются.

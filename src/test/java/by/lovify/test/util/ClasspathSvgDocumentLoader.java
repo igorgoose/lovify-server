@@ -1,7 +1,7 @@
 package by.lovify.test.util;
 
-import by.lovify.model.CustomizationConfig;
-import by.lovify.service.constructor.loader.SvgDocumentLoader;
+import by.lovify.constructor.model.CustomizationConfig;
+import by.lovify.constructor.service.loader.SvgDocumentLoader;
 import lombok.SneakyThrows;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
