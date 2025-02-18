@@ -28,7 +28,10 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.liquibase:liquibase-core")
+    implementation("org.hibernate.orm:hibernate-core")
+    implementation("io.hypersistence:hypersistence-utils-hibernate-63:3.9.1")
     implementation("xml-apis:xml-apis-ext:1.3.04")
     implementation(libs.batik.all) {
         exclude("commons-logging", "commons-logging")
