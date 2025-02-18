@@ -1,0 +1,1 @@
+drop table default_config_table;

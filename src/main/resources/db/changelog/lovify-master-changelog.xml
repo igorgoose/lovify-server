@@ -6,4 +6,5 @@
     <include file="changesets/0.0.1/0.0.1_1_create_character_table.xml" relativeToChangelogFile="true"/>
     <include file="changesets/0.0.1/0.0.1_2_create_customization_table.xml" relativeToChangelogFile="true"/>
     <include file="changesets/0.0.1/0.0.1_3_create_customization_color_table.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/0.0.1/0.0.1_4_create_default_config_table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
