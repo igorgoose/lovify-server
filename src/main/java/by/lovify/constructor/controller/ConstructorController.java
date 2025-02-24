@@ -1,8 +1,11 @@
 package by.lovify.constructor.controller;
 
+import by.lovify.constructor.dto.CustomizationsDTO;
+import by.lovify.constructor.enums.CustomizationType;
 import by.lovify.constructor.enums.Gender;
 import by.lovify.constructor.dto.CharacterConfigDTO;
 import by.lovify.constructor.mapper.CharacterDefaultConfigMapper;
+import by.lovify.constructor.mapper.CustomizationMapper;
 import by.lovify.constructor.model.CharacterVisualConfig;
 import by.lovify.constructor.service.CharacterPreviewService;
 import by.lovify.constructor.service.CharacterService;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,6 +38,23 @@ public class ConstructorController {
             CharacterDefaultConfigMapper.defaultConfigEntityToDTO(characterService.getDefaultConfig(gender)),
             HttpStatus.OK
         );
+    }
+
+    @GetMapping("/customizations")
+    CustomizationsDTO getCustomizations(
+        @RequestParam CustomizationType type,
+        @RequestParam Gender gender
+    ) {
+        return new CustomizationsDTO(
+            characterService.getCustomizations(type, gender).stream()
+                .map(CustomizationMapper::customizationModelToLinkDTO)
+                .toList()
+        );
+    }
+
+    @GetMapping("/customizations/color")
+    Set<String> getCustomizationsColor(@RequestParam CustomizationType type) {
+        return characterService.getCustomizationColors(type);
     }
 
     @PostMapping(value = "/characters/preview", produces = "image/png")
