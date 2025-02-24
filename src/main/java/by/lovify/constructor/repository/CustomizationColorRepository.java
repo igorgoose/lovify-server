@@ -12,7 +12,7 @@ public interface CustomizationColorRepository extends JpaRepository<ColoredCusto
 
     @Query(
         value = """
-            SELECT DISTINCT customizationColor.color
+            SELECT customizationColor.hexColor
             FROM ColoredCustomizationEntity customizationColor
             WHERE customizationColor.customizationType = :customizationType
             """

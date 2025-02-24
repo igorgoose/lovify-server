@@ -41,18 +41,15 @@ public class ConstructorController {
     }
 
     @GetMapping("/customizations")
-    ResponseEntity<CustomizationsDTO> getCustomizations(
+    CustomizationsDTO getCustomizations(
         @RequestParam CustomizationType type,
         @RequestParam Gender gender
     ) {
-        final CustomizationsDTO result =
-            new CustomizationsDTO(
-                characterService.getCustomizations(type, gender).stream()
-                    .map(CustomizationMapper::customizationModelToLinkDTO)
-                    .collect(Collectors.toList())
-            );
-
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new CustomizationsDTO(
+            characterService.getCustomizations(type, gender).stream()
+                .map(CustomizationMapper::customizationModelToLinkDTO)
+                .toList()
+        );
     }
 
     @GetMapping("/customizations/color")

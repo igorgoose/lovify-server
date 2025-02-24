@@ -22,5 +22,5 @@ public class ColoredCustomizationEntity {
     @Column(nullable = false)
     String customizationType;
     @Column(name = "hex", nullable = false)
-    private String color;
+    private String hexColor;
 }
