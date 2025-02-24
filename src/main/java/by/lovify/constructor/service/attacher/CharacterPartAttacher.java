@@ -62,7 +62,9 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
 
         P part = partBuilder.build(context);
         AttachedPart<P> attachedPart = doAttach(part, destinationPart, anchor, context);
+        // registering attachers that will attach parts to the attachedPart
         context.registerAttachers(attachedPart, attachers);
+        // invoking attachers awaiting anchors of the attached part and performing other necessary actions
         context.onPartAttached(attachedPart);
     }
 
@@ -72,6 +74,22 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
 
     protected abstract String getDestinationGroupId();
 
+
+    /**
+     * Performs the actual attachment of the part to the destination part.
+     * <p>
+     * Calculates absolute position of connector element in destination part's coordinate system
+     * Calculates difference between that and anchor's position
+     * Inserts part into destination part and applies transformations
+     * <p>
+     * Returns an instance of {@link AttachedPart} which contains the attached part and its transformation
+     *
+     * @param part            the part to attach
+     * @param destinationPart the part to attach to
+     * @param anchor          the anchor element to align source part's connector with
+     * @param context         the context of the character builder
+     * @return an instance of {@link AttachedPart} which contains the attached part and its transformation
+     */
     protected AttachedPart<P> doAttach(
         P part,
         AttachedPart<DP> destinationPart,
@@ -98,6 +116,20 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
         return new AttachedPart<>(partBuilder.wrap(importedSvg, Optional.of(part)), newAffineTransform);
     }
 
+
+    /**
+     * Finds group with the given id in the destination SVG document, or creates one if it doesn't exist.
+     * The group might be present in the SVG in case it was manually created there.
+     * <p>
+     * The group is positioned in the destination SVG document according to the anchor element.
+     * <p>
+     * The method is used to create a group where the part should be inserted.
+     *
+     * @param destinationSvg the SVG document where the group should be created
+     * @param groupId        the id of the group to create
+     * @param anchor         the anchor element to position the group according to
+     * @return the created or found group
+     */
     protected SVGOMGElement findOrCreateDestinationGroup(
         SVGSVGElement destinationSvg,
         String groupId,
@@ -115,6 +147,28 @@ public abstract class CharacterPartAttacher<P extends CharacterPart, DP extends 
             });
     }
 
+
+    /**
+     * Calculates a sequence of transforms which should be applied to the part to position it correctly in the
+     * destination SVG document.
+     * <p>
+     * The method takes into account the position of the connector element in the part's coordinate system, the
+     * position of the anchor element in the destination SVG document's coordinate system, and the size of the anchor
+     * element.
+     * <p>
+     * The method returns a list of transforms which should be applied to the part in the order they were calculated.
+     * <p>
+     * The first transform is a translation to the position of the connector element in the part's coordinate system.
+     * The second transform is a scaling to match the size of the anchor element.
+     * The third transform is a translation to the position of the anchor element in the destination SVG document's
+     * coordinate system.
+     *
+     * @param part            the part to position
+     * @param connectorElement the connector element in the part's coordinate system
+     * @param parentTransform  the transform of the parent element in the destination SVG document
+     * @param targetMarker     the anchor element in the destination SVG document's coordinate system
+     * @return the list of transforms to apply to the part
+     */
     protected List<OpenSvgTransform> calculateTransforms(
         P part,
         Element connectorElement,
