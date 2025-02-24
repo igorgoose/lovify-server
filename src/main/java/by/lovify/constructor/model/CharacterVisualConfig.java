@@ -12,6 +12,7 @@ public record CharacterVisualConfig(
     CustomizationConfig eyebrows,
     CustomizationConfig nose,
     CustomizationConfig mouth,
+    CustomizationConfig mustache,
     CustomizationConfig topClothing,
     CustomizationConfig bottomClothing,
     CustomizationConfig shoes,

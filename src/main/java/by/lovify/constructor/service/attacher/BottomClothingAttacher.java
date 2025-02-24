@@ -1,8 +1,8 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
-import by.lovify.constructor.model.constructor.part.Background;
-import by.lovify.constructor.model.constructor.part.RightLeg;
+import by.lovify.constructor.model.constructor.part.Body;
+import by.lovify.constructor.model.constructor.part.BottomClothing;
 import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.service.builder.CharacterPartBuilder;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class RightLegAttacher extends CharacterPartAttacher<RightLeg, Background> {
+public class BottomClothingAttacher extends CharacterPartAttacher<BottomClothing, Body>{
 
-    public RightLegAttacher(
-        CharacterPartBuilder<RightLeg> partBuilder,
-        List<CharacterPartAttacher<?, RightLeg>> characterPartAttachers,
+    public BottomClothingAttacher(
+        CharacterPartBuilder<BottomClothing> partBuilder,
+        List<CharacterPartAttacher<?, BottomClothing>> characterPartAttachers,
         CharacterPartPositioner characterPartPositioner,
         ConnectorResolver connectorResolver
     ) {
@@ -24,16 +24,16 @@ public class RightLegAttacher extends CharacterPartAttacher<RightLeg, Background
 
     @Override
     public String getAnchorId() {
-        return CharacterBuilderConstants.RIGHT_HIP_ANCHOR;
+        return CharacterBuilderConstants.CLOTHING_ANCHOR;
     }
 
     @Override
     protected String getConnectorId() {
-        return CharacterBuilderConstants.HIP_CONNECTOR;
+        return CharacterBuilderConstants.CLOTHING_CONNECTOR;
     }
 
     @Override
     protected String getDestinationGroupId() {
-        return CharacterBuilderConstants.RIGHT_LEG_GROUP;
+        return CharacterBuilderConstants.BOTTOM_CLOTHING_GROUP;
     }
 }

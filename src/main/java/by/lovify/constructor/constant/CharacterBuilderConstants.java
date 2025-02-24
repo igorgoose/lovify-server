@@ -37,6 +37,7 @@ public class CharacterBuilderConstants {
     public static final String FRONT_HAIR_GROUP = "front-hair-group";
     public static final String LEFT_LEG_GROUP = "left-leg-group";
     public static final String MOUTH_GROUP = "mouth-group";
+    public static final String MUSTACHE_GROUP = "mustache-group";
     public static final String NOSE_GROUP = "nose-group";
     public static final String RIGHT_LEG_GROUP = "right-leg-group";
     public static final String TOP_CLOTHING_GROUP = "top-clothing-group";

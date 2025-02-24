@@ -1,6 +1,7 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.model.constructor.part.Face;
 import by.lovify.constructor.model.constructor.part.Nose;
@@ -15,9 +16,10 @@ class NoseAttacher extends CharacterPartAttacher<Nose, Face> {
     public NoseAttacher(
         CharacterPartBuilder<Nose> sourcePartBuilder,
         List<CharacterPartAttacher<?, Nose>> attachers,
-        CharacterPartPositioner characterPartPositioner
+        CharacterPartPositioner characterPartPositioner,
+        ConnectorResolver connectorResolver
     ) {
-        super(sourcePartBuilder, attachers, characterPartPositioner);
+        super(sourcePartBuilder, attachers, characterPartPositioner, connectorResolver);
     }
 
     @Override

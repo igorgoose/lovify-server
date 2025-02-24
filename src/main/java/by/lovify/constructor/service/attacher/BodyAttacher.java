@@ -3,6 +3,7 @@ package by.lovify.constructor.service.attacher;
 import by.lovify.constructor.constant.CharacterBuilderConstants;
 import by.lovify.constructor.model.constructor.part.Background;
 import by.lovify.constructor.model.constructor.part.Body;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.service.builder.CharacterPartBuilder;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,10 @@ public class BodyAttacher extends CharacterPartAttacher<Body, Background> {
     public BodyAttacher(
         CharacterPartBuilder<Body> sourcePartBuilder,
         List<CharacterPartAttacher<?, Body>> attachers,
-        CharacterPartPositioner characterPartPositioner
+        CharacterPartPositioner characterPartPositioner,
+        ConnectorResolver connectorResolver
     ) {
-        super(sourcePartBuilder, attachers, characterPartPositioner);
+        super(sourcePartBuilder, attachers, characterPartPositioner, connectorResolver);
     }
 
     @Override

@@ -11,6 +11,11 @@ import org.w3c.dom.svg.SVGSVGElement;
 import java.awt.geom.AffineTransform;
 import java.util.Optional;
 
+/**
+ * Builder for the left leg character part.
+ * <p>
+ * The left leg is special, because it has a reflected transform which is applied to the SVG containing right leg.
+ */
 @Component
 public class LeftLegBuilder extends CharacterPartBuilder<LeftLeg> {
 

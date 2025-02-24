@@ -1,9 +1,9 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
-import by.lovify.constructor.model.constructor.part.Background;
-import by.lovify.constructor.model.constructor.part.RightLeg;
-import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
+import by.lovify.constructor.model.constructor.part.Face;
+import by.lovify.constructor.model.constructor.part.Mustache;
+import by.lovify.constructor.service.attacher.connector.MustacheConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.service.builder.CharacterPartBuilder;
 import org.springframework.stereotype.Component;
@@ -11,29 +11,29 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class RightLegAttacher extends CharacterPartAttacher<RightLeg, Background> {
+public class MustacheAttacher extends CharacterPartAttacher<Mustache, Face> {
 
-    public RightLegAttacher(
-        CharacterPartBuilder<RightLeg> partBuilder,
-        List<CharacterPartAttacher<?, RightLeg>> characterPartAttachers,
+    public MustacheAttacher(
+        CharacterPartBuilder<Mustache> partBuilder,
+        List<CharacterPartAttacher<?, Mustache>> characterPartAttachers,
         CharacterPartPositioner characterPartPositioner,
-        ConnectorResolver connectorResolver
+        MustacheConnectorResolver connectorResolver
     ) {
         super(partBuilder, characterPartAttachers, characterPartPositioner, connectorResolver);
     }
 
     @Override
     public String getAnchorId() {
-        return CharacterBuilderConstants.RIGHT_HIP_ANCHOR;
+        return CharacterBuilderConstants.NOSE_ANCHOR;
     }
 
     @Override
     protected String getConnectorId() {
-        return CharacterBuilderConstants.HIP_CONNECTOR;
+        return CharacterBuilderConstants.NOSE_CONNECTOR;
     }
 
     @Override
     protected String getDestinationGroupId() {
-        return CharacterBuilderConstants.RIGHT_LEG_GROUP;
+        return CharacterBuilderConstants.MUSTACHE_GROUP;
     }
 }

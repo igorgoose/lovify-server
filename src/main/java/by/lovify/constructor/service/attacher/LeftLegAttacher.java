@@ -1,6 +1,7 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
+import by.lovify.constructor.service.attacher.connector.ConnectorResolver;
 import by.lovify.constructor.service.attacher.positioner.CharacterPartPositioner;
 import by.lovify.constructor.model.constructor.part.Background;
 import by.lovify.constructor.model.constructor.part.LeftLeg;
@@ -15,9 +16,10 @@ public class LeftLegAttacher extends CharacterPartAttacher<LeftLeg, Background> 
     public LeftLegAttacher(
         CharacterPartBuilder<LeftLeg> partBuilder,
         List<CharacterPartAttacher<?, LeftLeg>> characterPartAttachers,
-        CharacterPartPositioner characterPartPositioner
+        CharacterPartPositioner characterPartPositioner,
+        ConnectorResolver connectorResolver
     ) {
-        super(partBuilder, characterPartAttachers, characterPartPositioner);
+        super(partBuilder, characterPartAttachers, characterPartPositioner, connectorResolver);
     }
 
     @Override
