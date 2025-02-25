@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="local_0.0.1_init_customizations" author="igorgoose" context="@local">
+        <preConditions onFail="MARK_RAN" onError="WARN">
+            <rowCount tableName="customization" expectedRows="0"/>
+        </preConditions>
+
+        <sqlFile path="sql/init_customizations.sql" relativeToChangelogFile="true"/>
+
+        <rollback>
+            <sqlFile path="sql/init_customizations_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

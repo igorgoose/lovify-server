@@ -1,0 +1,11 @@
+spring:
+
+  liquibase:
+    contexts: local
+
+features:
+  constructor:
+    preview:
+      svg-loader:
+        local-file-system:
+          base-path: ${SVG_LOADER_LFS_BASE_PATH}

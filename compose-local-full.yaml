@@ -28,6 +28,7 @@ services:
     networks:
       - s3
       - db
+    command: [ "--spring.profiles.active=local" ]
 
 
 networks:

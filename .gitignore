@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Directory for local needs ###
-local/
+/local
