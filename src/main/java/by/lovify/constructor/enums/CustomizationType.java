@@ -9,6 +9,7 @@ public enum CustomizationType {
     EYEBROWS,
     NOSE,
     MOUTH,
+    MUSTACHE,
     TOP_CLOTHING,
     BOTTOM_CLOTHING,
     SHOES,

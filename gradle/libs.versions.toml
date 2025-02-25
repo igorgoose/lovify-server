@@ -3,3 +3,4 @@ batik = "1.18"
 
 [libraries]
 batik-all = { module = "org.apache.xmlgraphics:batik-all", version.ref = "batik" }
+hypersistence-utils-hibernate = { module = "io.hypersistence:hypersistence-utils-hibernate-63", version = "3.9.1" }
