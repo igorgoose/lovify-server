@@ -1,5 +1,7 @@
 package by.lovify.constructor.service.attacher.connector;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import by.lovify.constructor.constant.CharacterBuilderConstants;
 import by.lovify.constructor.model.CharacterVisualConfig;
 import by.lovify.constructor.model.CustomizationConfig;
@@ -12,8 +14,6 @@ import org.w3c.dom.Element;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 class MustacheConnectorResolverTest {
 
     private final MustacheConnectorResolver resolver = new MustacheConnectorResolver();
@@ -25,7 +25,7 @@ class MustacheConnectorResolverTest {
     void resolveConnector_whenNoMouthExpression_defaultConnectorResolved() {
         var context = new CharacterBuilderContext(
             CharacterVisualConfig.builder()
-                .mustache(new CustomizationConfig().setId("edited_svgs/ready/mustache-1.svg"))
+                .mustache(Optional.of(new CustomizationConfig().setId("edited_svgs/ready/mustache-1.svg")))
                 .mouth(new CustomizationConfig().setId("mouth-1"))
                 .build()
         );
@@ -45,7 +45,7 @@ class MustacheConnectorResolverTest {
     void resolveConnector_whenMouthExpression_correspondingConnectorResolved() {
         var context = new CharacterBuilderContext(
             CharacterVisualConfig.builder()
-                .mustache(new CustomizationConfig().setId("edited_svgs/ready/mustache-1.svg"))
+                .mustache(Optional.of(new CustomizationConfig().setId("edited_svgs/ready/mustache-1.svg")))
                 .mouth(new CustomizationConfig().setId("mouth-expression-silly"))
                 .build()
         );

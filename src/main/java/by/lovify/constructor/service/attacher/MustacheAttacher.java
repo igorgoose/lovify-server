@@ -1,6 +1,9 @@
 package by.lovify.constructor.service.attacher;
 
 import by.lovify.constructor.constant.CharacterBuilderConstants;
+import by.lovify.constructor.model.constructor.Anchor;
+import by.lovify.constructor.model.constructor.AttachedPart;
+import by.lovify.constructor.model.constructor.CharacterBuilderContext;
 import by.lovify.constructor.model.constructor.part.Face;
 import by.lovify.constructor.model.constructor.part.Mustache;
 import by.lovify.constructor.service.attacher.connector.MustacheConnectorResolver;
@@ -11,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class MustacheAttacher extends CharacterPartAttacher<Mustache, Face> {
+public class MustacheAttacher extends SkippableCharacterPartAttacher<Mustache, Face> {
 
     public MustacheAttacher(
         CharacterPartBuilder<Mustache> partBuilder,
@@ -35,5 +38,14 @@ public class MustacheAttacher extends CharacterPartAttacher<Mustache, Face> {
     @Override
     protected String getDestinationGroupId() {
         return CharacterBuilderConstants.MUSTACHE_GROUP;
+    }
+
+    @Override
+    protected boolean shouldAttach(
+        AttachedPart<Face> destinationPart,
+        Anchor anchor,
+        CharacterBuilderContext context
+    ) {
+        return context.getVisualConfig().mustache().isPresent();
     }
 }

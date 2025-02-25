@@ -2,6 +2,8 @@ package by.lovify.constructor.model;
 
 import lombok.Builder;
 
+import java.util.Optional;
+
 @Builder
 public record CharacterVisualConfig(
     String skinColor,
@@ -12,7 +14,7 @@ public record CharacterVisualConfig(
     CustomizationConfig eyebrows,
     CustomizationConfig nose,
     CustomizationConfig mouth,
-    CustomizationConfig mustache,
+    Optional<CustomizationConfig> mustache,
     CustomizationConfig topClothing,
     CustomizationConfig bottomClothing,
     CustomizationConfig shoes,

@@ -31,13 +31,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.liquibase:liquibase-core")
     implementation("org.hibernate.orm:hibernate-core")
-    implementation("io.hypersistence:hypersistence-utils-hibernate-63:3.9.1")
-    implementation("xml-apis:xml-apis-ext:1.3.04")
+    implementation(libs.hypersistence.utils.hibernate)
     implementation(libs.batik.all) {
         exclude("commons-logging", "commons-logging")
     }
-    implementation("com.twelvemonkeys.imageio:imageio-webp:3.12.0")
-    implementation("com.twelvemonkeys.imageio:imageio-batik:3.12.0")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")

@@ -1,6 +1,5 @@
 package by.lovify.constructor.service.builder;
 
-import by.lovify.constructor.model.CharacterVisualConfig;
 import by.lovify.constructor.model.constructor.part.Mustache;
 import by.lovify.constructor.service.loader.SvgDocumentLoader;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,10 @@ import java.util.Optional;
 public class MustacheBuilder extends CharacterPartBuilder<Mustache> {
 
     public MustacheBuilder(SvgDocumentLoader svgDocumentLoader) {
-        super(svgDocumentLoader, CharacterVisualConfig::mustache);
+        super(
+            svgDocumentLoader,
+            it -> it.mustache().orElseThrow(() -> new IllegalArgumentException("Mustache must not be empty"))
+        );
     }
 
     @Override

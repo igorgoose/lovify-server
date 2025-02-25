@@ -1,7 +1,11 @@
 package by.lovify.constructor.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public record ColoredCustomizationConfigDTO(
-    String style,
+    @NotNull
+    String id,
+    @NotNull
     String color
 ) {
 }
