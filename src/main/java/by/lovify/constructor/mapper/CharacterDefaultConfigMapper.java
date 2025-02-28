@@ -14,21 +14,25 @@ public final class CharacterDefaultConfigMapper {
 
     public CharacterConfigDTO defaultConfigEntityToDTO(CharacterDefaultConfigEntity entity) {
         CharacterConfigObject entityCustomizationConfig = entity.getCustomizations();
-        return new CharacterConfigDTO(
-            entityCustomizationConfig.getSkinColor(),
-            coloredConfigToDTO(entityCustomizationConfig.getHair()),
-            coloredConfigToDTO(entityCustomizationConfig.getEyes()),
-            customizationToDTO(entityCustomizationConfig.getBodyType()),
-            customizationToDTO(entityCustomizationConfig.getFaceType()),
-            customizationToDTO(entityCustomizationConfig.getEyebrows()),
-            customizationToDTO(entityCustomizationConfig.getNose()),
-            customizationToDTO(entityCustomizationConfig.getMouth()),
-            customizationToDTO(entityCustomizationConfig.getTopClothing()),
-            customizationToDTO(entityCustomizationConfig.getBottomClothing()),
-            customizationToDTO(entityCustomizationConfig.getShoes()),
-            customizationToDTO(entityCustomizationConfig.getRightLeg()),
-            customizationToDTO(entityCustomizationConfig.getLeftLeg())
-        );
+        return CharacterConfigDTO.builder()
+            .skinColor(entityCustomizationConfig.getSkinColor())
+            .hair(coloredConfigToDTO(entityCustomizationConfig.getHair()))
+            .eyes(coloredConfigToDTO(entityCustomizationConfig.getEyes()))
+            .bodyType(customizationToDTO(entityCustomizationConfig.getBodyType()))
+            .faceType(customizationToDTO(entityCustomizationConfig.getFaceType()))
+            .eyebrows(customizationToDTO(entityCustomizationConfig.getEyebrows()))
+            .nose(customizationToDTO(entityCustomizationConfig.getNose()))
+            .mouth(customizationToDTO(entityCustomizationConfig.getMouth()))
+            .mustache(
+                entityCustomizationConfig.getMustache()
+                    .map(CharacterDefaultConfigMapper::customizationToDTO)
+            )
+            .topClothing(customizationToDTO(entityCustomizationConfig.getTopClothing()))
+            .bottomClothing(customizationToDTO(entityCustomizationConfig.getBottomClothing()))
+            .shoes(customizationToDTO(entityCustomizationConfig.getShoes()))
+            .rightLeg(customizationToDTO(entityCustomizationConfig.getRightLeg()))
+            .leftLeg(customizationToDTO(entityCustomizationConfig.getLeftLeg()))
+            .build();
     }
 
     public ColoredCustomizationConfigDTO coloredConfigToDTO(CharacterColoredCustomizationObject entity) {

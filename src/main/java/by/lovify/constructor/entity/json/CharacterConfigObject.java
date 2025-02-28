@@ -1,9 +1,9 @@
 package by.lovify.constructor.entity.json;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import java.util.Optional;
+
 @Data
 public class CharacterConfigObject {
 
@@ -15,6 +15,7 @@ public class CharacterConfigObject {
     private CharacterCustomizationObject eyebrows;
     private CharacterCustomizationObject nose;
     private CharacterCustomizationObject mouth;
+    private Optional<CharacterCustomizationObject> mustache;
     private CharacterCustomizationObject topClothing;
     private CharacterCustomizationObject bottomClothing;
     private CharacterCustomizationObject shoes;
