@@ -1,7 +1,7 @@
 package by.lovify.constructor.service.loader;
 
-import by.lovify.constructor.properties.LocalFileSystemSvgLoaderProperties;
 import by.lovify.constructor.model.CustomizationConfig;
+import by.lovify.constructor.properties.LocalFileSystemSvgLoaderProperties;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -11,7 +11,7 @@ import org.w3c.dom.svg.SVGDocument;
 import java.io.IOException;
 import java.nio.file.Path;
 
-@ConditionalOnBean(LocalFilesystemSvgDocumentLoader.class)
+@ConditionalOnBean(LocalFileSystemSvgLoaderProperties.class)
 @Component
 class LocalFilesystemSvgDocumentLoader implements SvgDocumentLoader {
 

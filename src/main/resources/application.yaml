@@ -6,7 +6,6 @@ spring:
     password: ${LOVIFY_DB_PASSWORD:db_password}
     url: ${LOVIFY_DB_URL:jdbc:postgresql://localhost:5433/lovify}
 
-
   liquibase:
     change-log: classpath:db/changelog/lovify-master-changelog.xml
     url: ${LIQUIBASE_LOVIFY_URL:jdbc:postgresql://localhost:5433/lovify}
@@ -16,16 +15,12 @@ spring:
   jpa:
     open-in-view: false
 
-
 features:
   constructor:
     preview:
       height: 800
       width: 400
       background-id: background
-      svg-loader:
-        local-file-system:
-          base-path: ${SVG_LOADER_LFS_BASE_PATH}
 
 logging:
   level:
